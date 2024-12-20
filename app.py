@@ -1,9 +1,6 @@
-import streamlit as st
-
-# Ensure Streamlit is installed
 try:
     import streamlit as st
-except ImportError:
+except ModuleNotFoundError:
     print("Streamlit is not installed. Please run 'pip install streamlit' to install it.")
     exit(1)
 
@@ -40,6 +37,7 @@ st.markdown(
         .section-content {
             font-size: 1.2rem;
             line-height: 1.6;
+            margin-bottom: 20px;
         }
         .cta-button {
             background-color: #ffcc00;
@@ -57,6 +55,15 @@ st.markdown(
         .cta-button:hover {
             background-color: #ffd633;
         }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
     </style>
     """,
     unsafe_allow_html=True
@@ -67,6 +74,16 @@ st.markdown("<div class='header-title'>Welcome to the Career Advisor Chatbot</di
 st.markdown(
     "<div class='subheading'>Your personalized career guidance assistant for South African students, Grades 10-12.</div>",
     unsafe_allow_html=True,
+)
+
+# Add Hero Image
+st.markdown(
+    """
+    <div class='image-container'>
+        <img src='https://unsplash.com/photos/IgUR1iX0mqM/download?force=true&w=1920' alt='Hero Image'>
+    </div>
+    """,
+    unsafe_allow_html=True
 )
 
 # Problem Statement Section
@@ -87,6 +104,16 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+# Add Image for Problem Statement
+st.markdown(
+    """
+    <div class='image-container'>
+        <img src='https://unsplash.com/photos/gMsnXqILjp4/download?force=true&w=1200' alt='Problem Statement Image'>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
 # Solutions Section
 st.markdown("<div class='section-title'>How This Chatbot Helps</div>", unsafe_allow_html=True)
 st.markdown(
@@ -102,7 +129,17 @@ st.markdown(
         </ul>
     </div>
     """,
-    unsafe_allow_html=True,
+    unsafe_allow_html=True
+)
+
+# Add Image for Solutions Section
+st.markdown(
+    """
+    <div class='image-container'>
+        <img src='https://unsplash.com/photos/ZzOa5G8hSPI/download?force=true&w=1200' alt='Solutions Image'>
+    </div>
+    """,
+    unsafe_allow_html=True
 )
 
 # Call to Action Button

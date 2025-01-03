@@ -1,0 +1,321 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Career Advice Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #0D1117;
+            color: #C9D1D9;
+        }
+
+        .chat-container {
+            width: 65%;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+            background-color: #161B22;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .rounded-image {
+            width: 80px; 
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #21262D;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .navbar img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .navbar .dropdown {
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: 20px;
+            background-color: #161B22;
+            border: 1px solid #C9D1D9;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .navbar .dropdown a {
+            display: block;
+            padding: 10px;
+            color: #C9D1D9;
+            text-decoration: none;
+            border-bottom: 1px solid #C9D1D9;
+        }
+
+        .navbar .dropdown a:last-child {
+            border-bottom: none;
+        }
+
+        .navbar .dropdown a:hover {
+            background-color: #21262D;
+        }
+
+        /* Chat box styles without visible scrollbar but with scrolling functionality */
+        #chat-box {
+            margin-bottom: 10px;
+            height: 300px;
+           
+            overflow: scroll; /* Keep the scrolling functionality */
+            background-color: #21262D;
+            padding: 15px;
+            border-radius: 10px;
+            color: #C9D1D9;
+            word-wrap: break-word;
+        }
+
+        /* Hide the scrollbar while keeping the functionality */
+        #chat-box::-webkit-scrollbar {
+            width: 0px; /* Makes the scrollbar invisible */
+            height: 0px;
+        }
+
+        #chat-box::-webkit-scrollbar-thumb {
+            background: transparent; /* Hides the scrollbar thumb */
+        }
+
+        #user-input {
+            padding: 10px;
+            border-radius: 25px;
+            width: 70%;
+            border: 1px solid #C9D1D9;
+            background-color: #0D1117;
+            color: #C9D1D9;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color:rgb(56, 77, 60);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2EA043;
+        }
+
+        .message {
+            margin: 10px 0;
+        }
+
+        .user {
+            text-align: right;
+            color: #58A6FF;
+        }
+
+        .bot {
+            text-align: left;
+            color: #F78166;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #21262D;
+            padding: 10px 20px;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .navbar img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .navbar .dropdown {
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: 5px;
+            background-color: #161B22;
+            border-top: 1px solid #C9D1D9; /* Only top border */
+            border-bottom: 1px solid #C9D1D9; /* Only bottom border */
+            border-left: none; /* Remove left border */
+            border-right: none; /* Remove right border */
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            width: 180px; /* Adjust the width as needed */
+        }
+        
+        .navbar .dropdown a {
+            display: block;
+            padding: 10px 20px;
+            color: #C9D1D9;
+            text-decoration: none;
+            border-bottom: 1px solid #C9D1D9;
+            white-space: nowrap;
+        }
+        
+        .navbar .dropdown a:last-child {
+            border-bottom: none;
+        }
+        
+        .navbar .dropdown a:hover {
+            background-color: #21262D;
+        }
+
+        /* User and bot message styles */
+        .message {
+            margin: 10px 0;
+            padding: 10px 15px;
+            border-radius: 15px;
+            max-width: 60%;
+            word-wrap: break-word;
+        }
+
+        /* User message styles */
+        .user {
+            background-color: rgb(49, 85, 123);
+            color: white;
+            margin-left: auto;
+            text-align: right;
+        }
+
+        /* Bot message styles */
+        .bot {
+            background-color: #2D333B;
+            color: white;
+            margin-right: auto;
+            text-align: left;
+            border: 1px solid #444C56;
+        }
+
+        .dropdown a i {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo" onclick="toggleDropdown()">
+            <img src="https://isbatuniversity.ac.ug/wp-content/uploads/2021/10/xcareer.jpg.pagespeed.ic.IF_7k84OkJ.webp" alt="Logo">
+            <span><i class="fas fa-bars"></i></span>
+        </div>
+        <div class="dropdown" id="dropdown-menu">
+            <a href="#"><i class="fas fa-home"></i>Home</a>
+            <a href="#"><i class="fas fa-cogs"></i>Settings</a>
+            <a href="#" onclick="exitChat()"><i class="fas fa-sign-out-alt"></i>Exit</a>
+        </div>
+    </div>
+
+    <div class="chat-container">
+        <img src="https://isbatuniversity.ac.ug/wp-content/uploads/2021/10/xcareer.jpg.pagespeed.ic.IF_7k84OkJ.webp" alt="Bot Logo" class="rounded-image" />
+        <h2>Career Advice Chatbot</h2>
+        <div id="chat-box"></div>
+        <input type="text" id="user-input" placeholder="Type your message here" />
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdown-menu');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+        
+
+        function exitChat() {
+            alert('Exiting chat...');
+            // Add any functionality for exiting the chat
+        }
+
+        async function sendMessage() {
+            const userInput = document.getElementById('user-input').value;
+            if (!userInput) return;
+
+            const chatBox = document.getElementById('chat-box');
+            chatBox.innerHTML += `<div class="message user"> ${userInput}</div>`;
+            document.getElementById('user-input').value = '';
+
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ input: userInput }),
+            });
+
+            const data = await response.json();
+            if (data.advice) {
+                chatBox.innerHTML += `<div class="message bot"> ${data.advice}</div>`;
+            }
+        }
+
+        //Sending messages through clicking enter
+        document.getElementById('user-input').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                sendMessage(); // Calls the sendMessage function on Enter key press
+                event.preventDefault(); // Prevents the default action (like adding a newline)
+            }
+        });
+        
+        async function sendMessage() {
+            const userInput = document.getElementById('user-input').value;
+            if (!userInput) return;
+        
+            // Display user message
+            const chatBox = document.getElementById('chat-box');
+            chatBox.innerHTML += `<div class="message user"> ${userInput}</div>`;
+            document.getElementById('user-input').value = ''; // Clear the input box
+            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+        
+            // Send to server
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ input: userInput }),
+            });
+        
+            const data = await response.json();
+            if (data.advice) {
+                // Display bot response
+                chatBox.innerHTML += `<div class="message bot"> ${data.advice}</div>`;
+                chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+            }
+        }
+        
+    </script>
+</body>
+</html>

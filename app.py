@@ -11,9 +11,9 @@ def landing_page():
     # If show_chatbot is True, show only the chatbot interface
     if st.session_state.show_chatbot:
         chatbot_interface()
-        if st.button("Back to Home"):
-            st.session_state.show_chatbot = False
-            st.rerun()
+       # if st.button("Back to Home"):
+          #  st.session_state.show_chatbot = False
+           # st.rerun()
         return
 
     # Set page configuration

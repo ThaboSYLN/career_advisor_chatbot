@@ -7,4 +7,3 @@ groq
 streamlit
 python-dotenv
 pip>=24.3.1
-

@@ -128,9 +128,7 @@ def chatbot_interface():
             <div class="nav-item">
                <i>🏠</i> <a href="/app" target="_self">Home</a>
             </div>
-            <div class="nav-item">
-                <i>📄</i> <a href="#settings">Documentation</a>
-            </div>
+            
             """,
             unsafe_allow_html=True,
         )

@@ -53,7 +53,7 @@ def chatbot_interface():
     """
     Streamlit interface for the chatbot.
     """
-    st.set_page_config(page_title="Career Advisor ChatBot", layout="wide")
+ 
 
     # Set title with color
     st.markdown("<h1 style='color: #4CAF50;'>Career Path Adviser ChatBot</h1>", unsafe_allow_html=True)
@@ -117,3 +117,4 @@ def chatbot_interface():
 # Run the chatbot interface
 if __name__ == "__main__":
     chatbot_interface()
+    

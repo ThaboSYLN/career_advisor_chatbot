@@ -136,7 +136,7 @@ def landing_page():
                 <li>24/7 access to career resources for all students, regardless of their background.</li>
                 <li>Personalized career recommendations based on your skills, interests, and goals.</li>
                 <li>Awareness of diverse career options, including emerging opportunities in technology and other industries.</li>
-                <li>Guidance wafa on necessary skills, qualifications, and pathways for specific careers.</li>
+                <li>Guidance on necessary skills, qualifications, and pathways for specific careers.</li>
                 <li>Real-time insights on in-demand jobs, salary trends, and future market predictions.</li>
             </ul>
         </div>

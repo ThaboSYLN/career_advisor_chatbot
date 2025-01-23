@@ -59,6 +59,10 @@ def logout():
     st.session_state.username = None
     st.rerun()
 
+def landing_page():
+    st.title("Welcome to the Career Advisor ChatBot")
+    st.write("Please use the navigation menu to access different features of the chatbot.")
+
 def main():
     # Initialize session state
     if "logged_in" not in st.session_state:
@@ -82,6 +86,8 @@ def main():
             login_page()
         elif option == "Register":
             register_page()
+        else:
+            landing_page()
 
 # Run the app
 if __name__ == "__main__":

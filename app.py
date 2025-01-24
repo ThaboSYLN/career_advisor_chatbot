@@ -46,18 +46,31 @@ def register_page():
     st.title("Register")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
+    
     if st.button("Register"):
-        users = load_users()
-        if username in users:
-            st.error("Username already exists")
+        # Validation checks
+        if not username.strip():
+            st.error("Username cannot be empty.")
+        elif not password.strip():
+            st.error("Password cannot be empty.")
+        elif len(password) < 8:
+            st.error("Password must be at least 8 characters long.")
         else:
-            save_user(username, password)
-            st.success("Registered successfully! Please log in.")
+            # Proceed with user registration
+            users = load_users()
+            if username in users:
+                st.error("Username already exists.")
+            else:
+                save_user(username, password)
+                st.success("Registered successfully! Please log in.")
+
 def try_page():
     st.title("Try") 
     st.session_state.logged_in = True
-    st.success("Try the chatbot!")   
-    st.rerun()      
+    st.session_state.username = "Guest"
+    st.success("You are now trying the chatbot as a guest!")   
+    st.rerun() 
+    
 
 def logout():
     st.session_state.logged_in = False
@@ -73,7 +86,7 @@ def main():
     if "logged_in" not in st.session_state:
         st.session_state.logged_in = False
         st.session_state.username = None
-
+    
     # Routing
     if st.session_state.logged_in:
         # Chatbot page

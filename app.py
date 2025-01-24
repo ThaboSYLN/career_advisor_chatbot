@@ -53,6 +53,11 @@ def register_page():
         else:
             save_user(username, password)
             st.success("Registered successfully! Please log in.")
+def try_page():
+    st.title("Try") 
+    st.session_state.logged_in = True
+    st.success("Try the chatbot!")   
+    st.rerun()      
 
 def logout():
     st.session_state.logged_in = False
@@ -81,11 +86,13 @@ def main():
         chatbot_interface()
     else:
         # Show login/registration options
-        option = st.radio("Choose an option", ("Login", "Register"))
+        option = st.sidebar.radio("Choose an option", ("Login", "Register","Try"))
         if option == "Login":
             login_page()
         elif option == "Register":
             register_page()
+        elif option == "Try":
+            try_page() 
         else:
             landing_page()
 

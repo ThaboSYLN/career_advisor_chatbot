@@ -17,8 +17,17 @@ def hash_password(password):
 def load_users():
     if not os.path.exists(USER_DB):
         return {}
+    
+    users = {}
     with open(USER_DB, "r") as f:
-        return {line.split(":")[0]: line.split(":")[1].strip() for line in f.readlines()}
+        for line in f.readlines():
+            line = line.strip()
+            if line and ":" in line:
+                parts = line.split(":", 1)  # Split at first colon only
+                if len(parts) == 2:
+                    username, password_hash = parts
+                    users[username] = password_hash
+    return users
 
 def save_user(username, password):
     with open(USER_DB, "a") as f:

@@ -54,7 +54,8 @@ def chatbot_interface():
     """
     Streamlit interface for the chatbot.
     """
- 
+    # Remove the set_page_config call from here
+    # st.set_page_config(page_title="Career Advisor ChatBot", layout="wide")
 
     # Set title with color
     st.markdown("<h1 style='color: #4CAF50;'>Career Path Adviser ChatBot</h1>", unsafe_allow_html=True)
@@ -77,6 +78,62 @@ def chatbot_interface():
 
     if "messages" not in st.session_state:
         st.session_state.messages = []
+    if "sidebar_visible" not in st.session_state:
+        st.session_state.sidebar_visible = True
+
+    
+    # Sidebar toggler
+    with st.sidebar:
+    # Sidebar toggler button
+        #if st.button("☰" if not st.session_state.sidebar_visible else "✖"):
+           # st.session_state.sidebar_visible = not st.session_state.sidebar_visible
+
+        # Dynamic sidebar content
+        if st.session_state.sidebar_visible:
+            with st.sidebar:
+                # Apply custom styles for icons and hover effect
+                st.markdown(
+            """
+            <style>
+            .nav-item {
+                font-size: 16px;
+                margin: 10px 0;
+                display: flex;
+                align-items: center;
+            }
+            .nav-item a {
+                text-decoration: none;
+                color: black;
+                display: flex;
+                align-items: center;
+                padding: 5px 10px;
+                border-radius: 5px;
+            }
+            .nav-item a:hover {
+                background-color: #9C29B0;
+            }
+            .nav-item i {
+                margin-right: 10px;
+                font-size: 18px;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        # Navigation header
+        st.header("llama-3.3-70b-versatile")
+
+        # Navigation items with icons and links
+        st.markdown(
+            """
+            <div class="nav-item">
+               <i>🏠</i> <a href="/app" target="_self">Home</a>
+            </div>
+            
+            """,
+            unsafe_allow_html=True,
+        )
 
     # Display chat history (including initial assistant message)
     for message in st.session_state.messages:
@@ -118,4 +175,6 @@ def chatbot_interface():
 # Run the chatbot interface
 if __name__ == "__main__":
     chatbot_interface()
+# This is not the active code, but a placeholder for the actual code that would be in the file.
+
     

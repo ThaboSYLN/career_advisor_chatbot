@@ -1,3 +1,4 @@
 .env
 user_credintials.txt
 __pycache__
+service-account.json
